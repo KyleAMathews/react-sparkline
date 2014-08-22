@@ -17,12 +17,25 @@ data = for i in [0..5]
   }
 
 module.exports = React.createClass
+  getInitialState: ->
+    currentSpeed: 0
+    speeds: for i in [0..100]
+      0
+
+  componentDidMount: ->
+    window.addEventListener 'mousemove', @handleMouseMove, false
+    setInterval @calculateMouseSpeed, 50
+
+  componentWillUnmount: ->
+    window.removeEventListener 'mousemove', @handleMouseMove
+
   render: ->
     <div style={width:'400px', margin:'0 auto'}>
       <h1>React-Sparkline</h1>
       <a href="https://github.com/KyleAMathews/react-sparkline">Code on Github</a>
       <br />
       <br />
+
       <h2>Default look</h2>
       <pre><code>
       {"""
@@ -30,6 +43,19 @@ module.exports = React.createClass
         """}
       </code></pre>
       <Sparkline />
+
+      <h2>Track mouse speed</h2>
+      <pre><code>
+      {"""
+      <Sparkline />
+        """}
+      </code></pre>
+      <Sparkline
+        animate
+        data={@state.speeds}
+        width=500
+        height=50
+      />
 
       <h2>Override all defaults</h2>
       <pre><code>
@@ -77,3 +103,22 @@ module.exports = React.createClass
       <br />
 
     </div>
+
+  handleMouseMove: (e) ->
+    @currentX = e.screenX
+    @currentY = e.screenY
+
+  calculateMouseSpeed: ->
+    #console.log 'hi', @
+    if @lastX and @lastY
+      traveledX = @currentX - @lastX
+      traveledY = @currentY - @lastY
+      currentSpeed = Math.sqrt(Math.pow(traveledX, 2) + Math.pow(traveledY, 2))
+      #console.log @state
+      @setState {
+        currentSpeed: currentSpeed
+        speeds: @state.speeds.concat currentSpeed
+      }
+
+    @lastX = @currentX
+    @lastY = @currentY
