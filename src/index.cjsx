@@ -5,8 +5,8 @@ module.exports = React.createClass
 
   getDefaultProps: ->
     return {
-      width: 50
-      height: 10
+      width: 100
+      height: 16
       strokeColor: 'black'
       strokeWidth: '0.5px'
       interpolate: 'basis'
