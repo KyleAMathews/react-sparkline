@@ -7,7 +7,6 @@ module.exports = React.createClass
     return {
       width: 50
       height: 10
-      fill: 'none'
       strokeColor: 'black'
       strokeWidth: '0.5px'
       interpolate: 'basis'
@@ -44,7 +43,7 @@ module.exports = React.createClass
     svg.append('path')
       .datum(@props.data)
       .attr('class', 'sparkline')
-      .style('fill', @props.fill)
+      .style('fill', 'none')
       .style('stroke', @props.strokeColor)
       .style('stroke-width', @props.strokeWidth)
       .attr('d', line)
