@@ -1,6 +1,6 @@
 {
   "name": "react-sparkline",
-  "description": "React component for rendering simple sparklines",
+  "description": "React component for rendering simple sparklines with D3",
   "version": "0.2.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "bugs": {

@@ -25,8 +25,6 @@ module.exports = React.createClass
     x = d3.scale.linear().range([2, @props.width - 2])
     y = d3.scale.linear().range([@props.height - 2, 2])
 
-    #parseDate = d3.time.format("%b %d, %Y").parse
-
     # react-sparkline allows you to pass in two types of data.
     # Data tied to dates and linear data. We need to change our line and x/y
     # functions depending on the type of data.
