@@ -1,14 +1,15 @@
 var path = require('path');
 var webpack = require('webpack');
 
-
 module.exports = {
   entry: [
     "webpack-dev-server/client?http://0.0.0.0:8080",
-    'webpack/hot/dev-server',
+    'webpack/hot/only-dev-server',
     './examples/index'
   ],
-  contentBase: './examples/',
+  devServer: {
+    contentBase: './examples/'
+  },
   devtool: "eval",
   debug: true,
   output: {
@@ -20,6 +21,7 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
     new webpack.IgnorePlugin(/un~$/)
   ],
   resolve: {

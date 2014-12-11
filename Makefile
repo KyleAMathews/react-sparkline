@@ -21,7 +21,7 @@ publish:
 publish-gh-pages:
 	git checkout gh-pages
 	git merge master
-	webpack --config webpack.config.production.js
+	webpack --config webpack.production.config.js
 	cp examples/* .
 	git add --all .
 	git commit -m "New release"
