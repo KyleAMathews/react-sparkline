@@ -25,6 +25,28 @@ dateData = for i in [0..100]
 
 dateData = _.sortBy dateData, (datum) -> return datum.date
 
+UpdatingSparkline = React.createClass
+  displayName: 'UpdatingSparkline'
+
+  getInitialState: ->
+    data: [1,2,1]
+
+  componentDidMount: ->
+    setInterval((=>
+      data = @state.data.slice()
+      data.push faker.helpers.randomNumber(10)
+      if data.length > 50
+        data = _.last data, 50
+      @setState data: data
+    ),500)
+
+  render: ->
+    <Sparkline
+      width=300
+      height=40
+      data={@state.data}
+    />
+
 module.exports = React.createClass
   render: ->
     <div style={width:'500px', margin:'0 auto'}>
@@ -59,6 +81,10 @@ module.exports = React.createClass
         strokeWidth='5px'
         interpolate='none'
         circleDiameter=10 />
+      <br />
+
+      <h2>Updating data</h2>
+      <UpdatingSparkline />
       <br />
 
       <h2>Pass in non-date data</h2>

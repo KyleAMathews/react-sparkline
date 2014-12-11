@@ -17,10 +17,18 @@ module.exports = React.createClass
   componentDidMount: ->
     @renderSparkline()
 
+  componentDidUpdate: ->
+    @renderSparkline()
+
   render: ->
     <div></div>
 
   renderSparkline: () ->
+    # If the sparkline has already been rendered, remove it.
+    el = @getDOMNode()
+    while (el.firstChild)
+      el.removeChild(el.firstChild)
+
     data = @props.data.slice()
 
     # Do nothing if no data is passed in.
