@@ -22,6 +22,11 @@ module.exports = React.createClass
 
   renderSparkline: () ->
     data = @props.data.slice()
+
+    # Do nothing if no data is passed in.
+    if data.length is 0
+      return
+
     x = d3.scale.linear().range([2, @props.width - 2])
     y = d3.scale.linear().range([@props.height - 2, 2])
 

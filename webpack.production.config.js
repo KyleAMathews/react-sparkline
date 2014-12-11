@@ -1,17 +1,11 @@
 var path = require('path');
 var webpack = require('webpack');
 
+
 module.exports = {
   entry: [
-    "webpack-dev-server/client?http://0.0.0.0:8080",
-    'webpack/hot/only-dev-server',
     './examples/index'
   ],
-  devServer: {
-    contentBase: './examples/'
-  },
-  devtool: "eval",
-  debug: true,
   output: {
     path: path.join(__dirname, 'examples'),
     filename: 'bundle.js',
@@ -20,9 +14,13 @@ module.exports = {
     modulesDirectories: ['node_modules']
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-    new webpack.IgnorePlugin(/un~$/)
+    new webpack.DefinePlugin({
+      "process.env": {
+        NODE_ENV: JSON.stringify("production")
+      }
+    }),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin()
   ],
   resolve: {
     extensions: ['', '.js', '.cjsx', '.coffee']
@@ -30,7 +28,7 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.css$/, loaders: ['style', 'css']},
-      { test: /\.cjsx$/, loaders: ['react-hot', 'coffee', 'cjsx']},
+      { test: /\.cjsx$/, loaders: ['coffee', 'cjsx']},
       { test: /\.coffee$/, loader: 'coffee' }
     ]
   }

@@ -11,16 +11,16 @@ columns = ['apple', 'peach', {
 
 data = for i in [0..5]
   {
-    apple: faker.Lorem.words(1)
-    peach: faker.Lorem.words(1)
+    apple: faker.lorem.words(1)
+    peach: faker.lorem.words(1)
     data: for i in [0..50]
-      faker.Helpers.randomNumber(20)
+      faker.helpers.randomNumber(20)
   }
 
 dateData = for i in [0..100]
   {
-    date: faker.Date.between("2014-06-23T00:21:59.271Z", "2014-07-23T00:21:59.271Z")
-    value: faker.Helpers.randomNumber(100)
+    date: faker.date.between("2014-06-23T00:21:59.271Z", "2014-07-23T00:21:59.271Z")
+    value: faker.helpers.randomNumber(100)
   }
 
 dateData = _.sortBy dateData, (datum) -> return datum.date
@@ -83,8 +83,8 @@ module.exports = React.createClass
       {"""
       dateData = for i in [0..100]
         {
-          date: faker.Date.between("2014-06-23T00:21:59.271Z", "2014-07-23T00:21:59.271Z")
-          value: faker.Helpers.randomNumber(100)
+          date: faker.date.between("2014-06-23T00:21:59.271Z", "2014-07-23T00:21:59.271Z")
+          value: faker.helpers.randomNumber(100)
         }
 
       dateData = _.sortBy dateData, (datum) -> return datum.date
@@ -109,5 +109,11 @@ module.exports = React.createClass
       <br />
       <br />
       <br />
+
+      <h2>If no data is passed in, an empty div is returned</h2>
+      <pre style={"white-space":"pre-wrap"}><code>
+        {"<Sparkline data={[]} />"}
+      </code></pre>
+      <Sparkline data={[]} />
 
     </div>
