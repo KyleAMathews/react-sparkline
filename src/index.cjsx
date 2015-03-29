@@ -21,7 +21,7 @@ module.exports = React.createClass
     @renderSparkline()
 
   render: ->
-    <div></div>
+    <div/>
 
   renderSparkline: () ->
     # If the sparkline has already been rendered, remove it.
