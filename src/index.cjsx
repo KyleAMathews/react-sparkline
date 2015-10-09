@@ -1,4 +1,5 @@
 React = require 'react'
+ReactDOM = require 'react-dom'
 d3 = require 'd3'
 
 module.exports = React.createClass
@@ -25,7 +26,7 @@ module.exports = React.createClass
 
   renderSparkline: () ->
     # If the sparkline has already been rendered, remove it.
-    el = @getDOMNode()
+    el = ReactDOM.findDOMNode(@)
     while (el.firstChild)
       el.removeChild(el.firstChild)
 
@@ -70,7 +71,7 @@ module.exports = React.createClass
       lastX = x(data.length - 1)
       lastY = y(data[data.length - 1])
 
-    svg = d3.select(@getDOMNode())
+    svg = d3.select(ReactDOM.findDOMNode(@))
       .append('svg')
       .attr('width', @props.width)
       .attr('height', @props.height)
