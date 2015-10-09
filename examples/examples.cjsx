@@ -14,13 +14,13 @@ data = for i in [0..5]
     apple: faker.lorem.words(1)
     peach: faker.lorem.words(1)
     data: for i in [0..50]
-      faker.helpers.randomNumber(20)
+      faker.random.number(20)
   }
 
 dateData = for i in [0..100]
   {
     date: faker.date.between("2014-06-23T00:21:59.271Z", "2014-07-23T00:21:59.271Z")
-    value: faker.helpers.randomNumber(100)
+    value: faker.random.number(100)
   }
 
 dateData = _.sortBy dateData, (datum) -> return datum.date
@@ -34,7 +34,7 @@ UpdatingSparkline = React.createClass
   componentDidMount: ->
     setInterval((=>
       data = @state.data.slice()
-      data.push faker.helpers.randomNumber(10)
+      data.push faker.random.number(10)
       if data.length > 50
         data = _.last data, 50
       @setState data: data
@@ -110,7 +110,7 @@ module.exports = React.createClass
       dateData = for i in [0..100]
         {
           date: faker.date.between("2014-06-23T00:21:59.271Z", "2014-07-23T00:21:59.271Z")
-          value: faker.helpers.randomNumber(100)
+          value: faker.random.number(100)
         }
 
       dateData = _.sortBy dateData, (datum) -> return datum.date
