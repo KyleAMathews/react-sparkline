@@ -88,7 +88,7 @@ module.exports = React.createClass
       <br />
 
       <h2>Pass in non-date data</h2>
-      <pre style={"white-space":"pre-wrap"}><code>
+      <pre style={whiteSpace:"pre-wrap"}><code>
       {"""
       <Sparkline
         data={[48999,89163,60000,99526,89736,89963,97176]}
@@ -105,7 +105,7 @@ module.exports = React.createClass
       <br />
 
       <h2>Pass in date data</h2>
-      <pre style={"white-space":"pre-wrap"}><code>
+      <pre style={whiteSpace:"pre-wrap"}><code>
       {"""
       dateData = for i in [0..100]
         {
@@ -137,7 +137,7 @@ module.exports = React.createClass
       <br />
 
       <h2>If no data is passed in, an empty div is returned</h2>
-      <pre style={"white-space":"pre-wrap"}><code>
+      <pre style={whiteSpace:"pre-wrap"}><code>
         {"<Sparkline data={[]} />"}
       </code></pre>
       <Sparkline data={[]} />
